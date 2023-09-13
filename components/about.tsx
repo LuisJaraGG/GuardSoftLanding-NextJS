@@ -30,6 +30,8 @@ const About = () => {
             src="/images/about.jpg"
             alt="about image"
             className="w-full h-full object-cover"
+            width={100}
+            height={100}
           ></Image>
           <div className="absolute w-full h-full bg-blue-900 opacity-30 top-0 animate-in"></div>
         </div>
