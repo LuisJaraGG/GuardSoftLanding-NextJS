@@ -7,21 +7,10 @@ const HeroPage = () => {
   return (
     <div
       id="inicio"
-      className="h-screen w-[100%] bg-gradient-radial  flex flex-col justify-center items-center  relative"
+      className="h-screen  bg-gradient-radial  flex flex-col justify-center items-center  relative"
     >
       <div className="absolute top-0 right-0 " style={{ zIndex: -1 }}>
         <LottieW path={"fondo1"} id={"fondo1"} styles={"w-full"}></LottieW>
-      </div>
-
-      <div
-        className="flex justify-center absolute bottom-0 z-5 "
-      >
-        <a href="#nosotros">
-          <FaAngleDown
-            size={32}
-            className="text-blue-600 motion-reduce:animate-bounce duration-100 "
-          ></FaAngleDown>
-        </a>
       </div>
 
       <div className="w-3/4  flex flex-col gap-y-3 ">
@@ -43,6 +32,14 @@ const HeroPage = () => {
             Guardsoft es un partner digital listo para involucrarse y llevar a
             sus clientes al próximo nivel
           </p>
+        </div>
+        <div className="flex justify-center absolute bottom-0 z-5 ">
+          <a href="#nosotros">
+            <FaAngleDown
+              size={32}
+              className="text-blue-600 motion-reduce:animate-bounce duration-100 "
+            ></FaAngleDown>
+          </a>
         </div>
       </div>
     </div>
