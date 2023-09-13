@@ -5,10 +5,7 @@ import LottieW from "./lottieW";
 
 const About = () => {
   return (
-    <div
-      id="nosotros"
-      className="h-screen bg-gradient-radial min-w-[428px] min-h-[812px]"
-    >
+    <div id="nosotros" className="h-screen bg-gradient-radial  min-h-[812px]">
       <div className="h-full w-full  flex flex-col-reverse justify-center items-center relative">
         <div className="w-full h-[40%] relative">
           <img

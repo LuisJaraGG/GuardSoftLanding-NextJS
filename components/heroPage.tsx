@@ -7,14 +7,14 @@ const HeroPage = () => {
   return (
     <div
       id="inicio"
-      className="h-screen bg-gradient-radial w-full flex flex-col justify-center items-center  relative min-w-[428px] min-h-[812px]"
+      className="h-screen bg-gradient-radial  flex flex-col justify-center items-center  relative   min-h-[812px]"
     >
       <div className="absolute top-0 right-0 " style={{ zIndex: -1 }}>
         <LottieW path={"fondo1"} id={"fondo1"} styles={"w-full"}></LottieW>
       </div>
       <div className="w-3/4  flex flex-col gap-y-3 ">
         <div className="flex justify-center">
-          <LottieW path={"hero"} id={"hero"}></LottieW>
+          <LottieW path={"hero"} id={"hero"} styles={"w-full"}></LottieW>
         </div>
         <div>
           <p className="text-[14px] text-blue-600 font-normal">
