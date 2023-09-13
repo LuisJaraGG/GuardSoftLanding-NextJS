@@ -52,7 +52,7 @@ const Contact = () => {
   return (
     <div
       id="contactanos"
-      className="h-screen bg-gradient-radial relative  min-h-[812px] "
+      className="h-screen bg-gradient-radial relative min-w-[428px] min-h-[812px] "
     >
       <div className="h-full w-full flex flex-col justify-center items-center  ">
         <div className="w-3/4  flex flex-col gap-y-20">
