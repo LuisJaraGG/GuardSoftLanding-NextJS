@@ -47,7 +47,7 @@ interface Props {
 
 const card = ({ image, tittle, content, link }: Props) => (
   <a href={`${link}`}>
-    <Card className=" rounded-lg hover:border-blue-600 p-4 h-[300px] pb-0">
+    <Card className=" rounded-2xl hover:border-blue-600 p-4 h-[300px] pb-0">
       <CardHeader>
         <CardTitle className="flex justify-center px-16">
           <img
@@ -68,13 +68,48 @@ const card = ({ image, tittle, content, link }: Props) => (
 );
 
 
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+
+const applyFadeIn = (element: HTMLElement | null) => {
+  if (element) {
+    element.classList.remove("opacity-0");
+    element.classList.add("animate-fade-in");
+    element.classList.add("opacity-1");
+  }
+};
 
 const Proyects = () => {
+      const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+      useEffect(() => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const targetCard = entry.target as HTMLDivElement;
+                applyFadeIn(targetCard);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        cardRefs.current.forEach((cardRef) => {
+          if (cardRef) {
+            observer.observe(cardRef);
+          }
+        });
+
+        return () => {
+          observer.disconnect();
+        };
+      }, []);
+
   return (
     <div id="proyectos" className="bg-gradient-radial  relative py-44 ">
       <div className="h-full w-full flex flex-col justify-center items-center">
         <div className="w-3/4 flex flex-col   ">
-          <div className="text-center">
+          <div ref={(el) => cardRefs.current.push(el)} className="text-center opacity-0">
             <p className="text-[32px] font-black text-blue-600">
               Nuestros Proyectos
             </p>
@@ -84,34 +119,36 @@ const Proyects = () => {
               clientes
             </p>
           </div>
-          <Slider
-            dots={true}
-            infinite={true}
-            speed={500}
-            slidesToShow={1}
-            slidesToScroll={1}
-            arrows={true}
-            autoplay={true}
-            autoplaySpeed={3000}
-          >
-            {slides.map((slide, index) => {
-              return (
-                <div
-                  key={index}
-                  className="max-w-[1400px]  w-full m-auto py-8 px-2 relative group "
-                >
-                  <div className="w-full h-full rounded-2xl bg-center bg-cover duration-500">
-                    {card({
-                      image: slide.url,
-                      tittle: slide.tittle,
-                      content: slide.content,
-                      link: slide.link,
-                    })}
+          <div ref={(el) => cardRefs.current.push(el)} className="opacity-0">
+            <Slider
+              dots={true}
+              infinite={true}
+              speed={500}
+              slidesToShow={1}
+              slidesToScroll={1}
+              arrows={true}
+              autoplay={true}
+              autoplaySpeed={3000}
+            >
+              {slides.map((slide, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="max-w-[1400px]  w-full m-auto py-8 px-2 relative group "
+                  >
+                    <div className="w-full h-full rounded-2xl bg-center bg-cover duration-500">
+                      {card({
+                        image: slide.url,
+                        tittle: slide.tittle,
+                        content: slide.content,
+                        link: slide.link,
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </Slider>
+                );
+              })}
+            </Slider>
+          </div>
         </div>
       </div>
 

@@ -2,8 +2,24 @@
 import React from "react";
 import Image from "next/image";
 import LottieW from "./lottieW";
+import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 const About = () => {
+    const [ref, inView] = useInView({
+      triggerOnce: true,
+      threshold: 0.5, // Ajusta el valor según tus necesidades
+    });
+
+    useEffect(() => {
+      if (inView) {
+        // Cuando el elemento esté en la vista, puedes aplicar el efecto "fade in" aquí
+        const element = document.querySelector(".fade-in-element");
+        if (element) {
+          element.classList.add("animate-fade-in");
+        }
+      }
+    }, [inView]);
   return (
     <div id="nosotros" className="h-screen bg-gradient-radial">
       <div className="h-full w-full  flex flex-col-reverse justify-center items-center relative">
@@ -16,12 +32,19 @@ const About = () => {
           <div className="absolute w-full h-full bg-blue-900 opacity-30 top-0 animate-in"></div>
         </div>
 
-        <div className="w-3/4  h-[70%] flex  items-center ">
+        <div
+          ref={ref}
+          className="w-3/4  h-[70%] flex  items-center fade-in-element "
+          style={{
+            visibility: inView ? "visible" : "hidden",
+            opacity: inView ? 1 : 0,
+          }}
+        >
           <div>
             <p className=" text-[20px] font-normal text-blue-600">
               Sobre nosotros
             </p>
-            <p className=" text-[32px] font-black text-blue-600  leading-tight">
+            <p className=" text-[32px] font-black text-blue-600  leading-tight ">
               ¿Quienes Somos?
             </p>
             <p className=" text-[16px] font-normal text-slate-500 leading-relaxed">

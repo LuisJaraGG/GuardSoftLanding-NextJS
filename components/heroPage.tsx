@@ -33,7 +33,7 @@ const HeroPage = () => {
             sus clientes al próximo nivel
           </p>
         </div>
-        <div className="flex justify-center absolute bottom-0 z-5 ">
+        <div className="w-full flex justify-center items-center ">
           <a href="#nosotros">
             <FaAngleDown
               size={32}

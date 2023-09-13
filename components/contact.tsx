@@ -34,7 +34,41 @@ const formSchema = z.object({
     .max(500),
 });
 
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+
+const applyFadeIn = (element: HTMLElement | null) => {
+  if (element) {
+    element.classList.remove("opacity-0");
+    element.classList.add("animate-fade-in");
+    element.classList.add("opacity-1");
+  }
+};
 const Contact = () => {
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const targetCard = entry.target as HTMLDivElement;
+            applyFadeIn(targetCard);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cardRefs.current.forEach((cardRef) => {
+      if (cardRef) {
+        observer.observe(cardRef);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
@@ -53,79 +87,88 @@ const Contact = () => {
     <div id="contactanos" className="bg-gradient-radial relative  pt-20 ">
       <div className="h-full w-full flex flex-col justify-center items-center  ">
         <div className="w-3/4  flex flex-col gap-y-20 pb-10">
-          <div className="text-center">
+          <div
+            ref={(el) => cardRefs.current.push(el)}
+            className="text-center opacity-0"
+          >
             <p className="text-[32px] font-black text-blue-600">Contactanos</p>
             <p className="text-[20px] font-normal text-slate-500">
               Si tienes algun proyecto contacta con nosotros y podremos ayudarte
               a desarrollarlo
             </p>
           </div>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nombre</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="w/full"
-                        disabled={isLoading}
-                        placeholder="Nombre"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="w/full"
-                        disabled={isLoading}
-                        placeholder="usuario@gmail.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Mensaje</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        className="w/full"
-                        disabled={isLoading}
-                        rows={5}
-                        placeholder="texto de requerimiento"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button
-                disabled={isLoading}
-                type="submit"
-                className=" bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-900 hover:to-blue-800 w-full rounded-none"
+          <div ref={(el) => cardRefs.current.push(el)} className="opacity-0">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
               >
-                Enviar
-              </Button>
-            </form>
-          </Form>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Nombre</FormLabel>
+                      <FormControl>
+                        <Input
+                          className="w/full"
+                          disabled={isLoading}
+                          placeholder="Nombre"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          className="w/full"
+                          disabled={isLoading}
+                          placeholder="usuario@gmail.com"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Mensaje</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="w/full"
+                          disabled={isLoading}
+                          rows={5}
+                          placeholder="texto de requerimiento"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  disabled={isLoading}
+                  type="submit"
+                  className=" bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-900 hover:to-blue-800 w-full rounded-none"
+                >
+                  Enviar
+                </Button>
+              </form>
+            </Form>
+          </div>
+
           <div className="flex flex-row gap-x-10 justify-center">
             <FaFacebook size={30} className="text-blue-600 "></FaFacebook>
             <FaYoutube size={30} className="text-blue-600 "></FaYoutube>
@@ -133,7 +176,7 @@ const Contact = () => {
             <FaInstagram size={30} className="text-blue-600 "></FaInstagram>
           </div>
         </div>
-          <Footer></Footer>
+        <Footer></Footer>
       </div>
 
       {/* fondo */}

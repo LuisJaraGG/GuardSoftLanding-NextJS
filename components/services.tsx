@@ -9,12 +9,46 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import LottieW from "./lottieW";
+import { useEffect, useRef } from "react";
+import { useInView } from "react-intersection-observer";
+
+const applyFadeIn = (element: HTMLElement | null) => {
+  if (element) {
+    element.classList.remove("opacity-0");
+    element.classList.add("animate-fade-in");
+    element.classList.add("opacity-1");
+  }
+};
 
 const Services = () => {
+    const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const targetCard = entry.target as HTMLDivElement;
+              applyFadeIn(targetCard);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      cardRefs.current.forEach((cardRef) => {
+        if (cardRef) {
+          observer.observe(cardRef);
+        }
+      });
+
+      return () => {
+        observer.disconnect();
+      };
+    }, []);
   return (
     <div id="servicio" className=" bg-gradient-radial relative pt-16  ">
       <div className="h-full w-full flex flex-col justify-center items-center">
-        <div className="w-3/4  flex flex-col gap-y-2">
+        <div className="w-3/4  flex flex-col gap-y-12">
           <div className="text-center ">
             <p className="text-blue-600 font-black text-[32px] leading-tight">
               Servicios
@@ -25,7 +59,10 @@ const Services = () => {
           </div>
 
           <div className=" flex flex-col gap-y-5 pb-16">
-            <Card className=" rounded-3xl shadow-lg ">
+            <Card
+              ref={(el) => cardRefs.current.push(el)}
+              className=" rounded-3xl shadow-lg opacity-0 "
+            >
               <CardHeader className="px-2 py-1">
                 <CardTitle className="text-center">
                   <LottieW
@@ -47,7 +84,10 @@ const Services = () => {
               </CardContent>
             </Card>
 
-            <Card className=" rounded-3xl shadow-lg">
+            <Card
+              ref={(el) => cardRefs.current.push(el)}
+              className=" rounded-3xl shadow-lg opacity-0 "
+            >
               <CardHeader className="px-2 py-1">
                 <CardTitle className="text-center">
                   <LottieW
@@ -66,7 +106,10 @@ const Services = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className=" rounded-3xl shadow-lg">
+            <Card
+              ref={(el) => cardRefs.current.push(el)}
+              className=" rounded-3xl shadow-lg opacity-0 "
+            >
               <CardHeader className="px-2 py-1">
                 <CardTitle className="text-center">
                   <LottieW

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -9,13 +9,52 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import LottieW from "./lottieW";
+import { useInView } from "react-intersection-observer";
+
+const applyFadeIn = (element: HTMLElement | null) => {
+  if (element) {
+    element.classList.remove("opacity-0");
+    element.classList.add("animate-fade-in")
+    element.classList.add("opacity-1"); ;
+  }
+};
 
 const Purpose = () => {
+
+
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const targetCard = entry.target as HTMLDivElement;
+            applyFadeIn(targetCard);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    cardRefs.current.forEach((cardRef) => {
+      if (cardRef) {
+        observer.observe(cardRef);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div id="proposito" className=" bg-gradient-radial relative  pb-16">
+    <div id="proposito" className=" bg-gradient-radial relative  pb-36">
       <div className="h-full w-full flex flex-col  items-center">
         <div className="w-3/4  flex flex-col gap-y-2">
-          <div className="text-center mt-16 ">
+          <div
+            ref={(el) => cardRefs.current.push(el)}
+            className="text-center mt-24 opacity-0 "
+          >
             <p className="text-white font-black text-[32px] leading-none">
               Propósito
             </p>
@@ -23,8 +62,11 @@ const Purpose = () => {
               Unidos por nuestros valores compartidos
             </p>
           </div>
-          <div className=" flex flex-col justify-center gap-y-7">
-            <Card className=" rounded-3xl shadow-lg ">
+          <div className=" flex flex-col justify-center gap-y-16">
+            <Card
+              ref={(el) => cardRefs.current.push(el)}
+              className=" rounded-3xl shadow-lg fade-in-element opacity-0"
+            >
               <CardHeader className=" px-3 pt-3 pb-0">
                 <CardTitle className="text-center">
                   <p className="text-blue-600 text-[20px] font-black ">
@@ -40,7 +82,10 @@ const Purpose = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className=" rounded-3xl shadow-lg">
+            <Card
+              ref={(el) => cardRefs.current.push(el)}
+              className=" rounded-3xl shadow-lg fade-in-element opacity-0"
+            >
               <CardHeader className="px-3 pt-3 pb-0">
                 <CardTitle className="text-center">
                   <p className="text-blue-600 text-[20px] font-black">
@@ -55,7 +100,10 @@ const Purpose = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className=" rounded-3xl shadow-lg">
+            <Card
+              ref={(el) => cardRefs.current.push(el)}
+              className=" rounded-3xl shadow-lg fade-in-element opacity-0"
+            >
               <CardHeader className="px-3 pt-3 pb-0">
                 <CardTitle className="text-center">
                   <p className="text-blue-600 text-[20px] font-black">
