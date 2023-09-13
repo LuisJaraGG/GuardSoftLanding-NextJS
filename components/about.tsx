@@ -4,6 +4,8 @@ import Image from "next/image";
 import LottieW from "./lottieW";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import dynamic from "next/dynamic";
+
 
 const About = () => {
     const [ref, inView] = useInView({
@@ -24,11 +26,11 @@ const About = () => {
     <div id="nosotros" className="h-screen bg-gradient-radial">
       <div className="h-full w-full  flex flex-col-reverse justify-center items-center relative">
         <div className="w-full h-[30%] relative">
-          <img
+          <Image
             src="/images/about.jpg"
             alt="about image"
             className="w-full h-full object-cover"
-          />
+          ></Image>
           <div className="absolute w-full h-full bg-blue-900 opacity-30 top-0 animate-in"></div>
         </div>
 

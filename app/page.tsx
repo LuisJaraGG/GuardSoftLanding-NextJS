@@ -1,15 +1,14 @@
+import React, { lazy, Suspense } from "react";
 import HeroPage from "@/components/heroPage";
-
 import dynamic from "next/dynamic";
-const Purpose = dynamic(() => import("@/components/purpose"),{ ssr: false });
-const Services = dynamic(() => import("@/components/services"), { ssr: false });
-const Proyects = dynamic(() => import("@/components/proyects"), { ssr: false });
-const LocateUs = dynamic(() => import("@/components/locateUs"), { ssr: false });
-const Contact = dynamic(() => import("@/components/contact"), { ssr: false });
+const About = lazy(() => import("@/components/about"));
+const Purpose = lazy(() => import("@/components/purpose"));
+const Services = lazy(() => import("@/components/services"));
+const Proyects = lazy(() => import("@/components/proyects"));
+const LocateUs = lazy(() => import("@/components/locateUs"));
+const Contact = lazy(() => import("@/components/contact"));
 
-const About = dynamic(() => import("@/components/about"));
 // import { useState } from "react";
-
 
 export default function Home() {
   // const [showPurpose, setshowPurpose] = useState(false)
@@ -20,12 +19,14 @@ export default function Home() {
   return (
     <main className="">
       <HeroPage></HeroPage>
-      <About></About>
-      <Purpose></Purpose>
-      <Services></Services>
-      <Proyects></Proyects>
-      <LocateUs></LocateUs>
-      <Contact></Contact>
+      <Suspense fallback={<div>Loading...</div>}>
+        <About></About>
+        <Purpose></Purpose>
+        <Services></Services>
+        <Proyects></Proyects>
+        <LocateUs></LocateUs>
+        <Contact></Contact>
+      </Suspense>
     </main>
   );
 }
