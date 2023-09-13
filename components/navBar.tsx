@@ -3,7 +3,7 @@ import React from "react";
 import Logo from "./logo";
 const NavBar = () => {
   return (
-    <div className="hidden md:flex shadow-md justify-center bg-white fixed top-0 left-0 right-0 z-10 ">
+    <div className="hidden md:flex shadow-md justify-center bg-white sticky top-0 left-0 right-0 z-10 ">
       <div className=" flex items-center justify-between w-3/4 min-w-[500px] max-w-[900px]  p-4">
         <div className="w-[25%]">
           <a href="#inicio">
