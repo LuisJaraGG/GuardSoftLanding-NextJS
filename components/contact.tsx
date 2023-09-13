@@ -50,12 +50,9 @@ const Contact = () => {
   const isLoading = form.formState.isSubmitting;
 
   return (
-    <div
-      id="contactanos"
-      className="h-screen bg-gradient-radial relative  min-h-[812px] "
-    >
+    <div id="contactanos" className="bg-gradient-radial relative  pt-20 ">
       <div className="h-full w-full flex flex-col justify-center items-center  ">
-        <div className="w-3/4  flex flex-col gap-y-20">
+        <div className="w-3/4  flex flex-col gap-y-20 pb-10">
           <div className="text-center">
             <p className="text-[32px] font-black text-blue-600">Contactanos</p>
             <p className="text-[20px] font-normal text-slate-500">
@@ -136,7 +133,9 @@ const Contact = () => {
             <FaInstagram size={30} className="text-blue-600 "></FaInstagram>
           </div>
         </div>
+          <Footer></Footer>
       </div>
+
       {/* fondo */}
       <div className="absolute bottom-0  left-0" style={{ zIndex: -1 }}>
         <LottieW
@@ -145,7 +144,6 @@ const Contact = () => {
           styles={"w-full  "}
         ></LottieW>
       </div>
-      <Footer></Footer>
     </div>
   );
 };

@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import LottieW from "./lottieW";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 import {
   Card,
   CardContent,
@@ -11,35 +13,67 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    slidesToSlide: 3,
-    swipeable: false, // Desactivar swipeable en escritorio
-    infinite: false, // Desactivar infinite en escritorio
-    autoPlay: false, // Desactivar autoplay en escritorio // optional, default to 1.
+
+const slides = [
+  {
+    url: "/images/ecarlogo.png",
+    tittle: "Ecar",
+    content:
+      "Sistema de consulta integrada para vehículos, SUNARP, Revisión Técnica, SOAT, Papeletas de Lima y Callao",
+    link: "https://play.google.com/store/apps/details?id=com.centinel.ecar&hl=es&gl=US",
   },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-    slidesToSlide: 2, // optional, default to 1.
+  {
+    url: "/images/cloudhotel.png",
+    tittle: "CloudHotel",
+    content:
+      "Nuestra aplicacion permite gestionar hoteles de manera facil y sencilla.",
+    link: "https://play.google.com/store/apps/details?id=com.guardsoft.cloudhotel&hl=es_CL&gl=US",
   },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-    slidesToSlide: 1, // optional, default to 1.
+  {
+    url: "/images/mibulla.png",
+    tittle: "MiBulla",
+    content:
+      "Mi Bulla, una manera fácil de buscar y escuchar tus emisoras favoritas. Todas las emisoras del Perú.",
+    link: "https://play.google.com/store/apps/details?id=pe.guardsoft.mibulla&hl=es_CL&gl=US",
   },
-};
+];
+
+interface Props {
+  image: string;
+  tittle?: string;
+  content?: string;
+  link: string;
+}
+
+const card = ({ image, tittle, content, link }: Props) => (
+  <a href={`${link}`}>
+    <Card className=" rounded-lg hover:border-blue-600 p-4 h-[300px] pb-0">
+      <CardHeader>
+        <CardTitle className="flex justify-center px-16">
+          <img
+            className="object-cover"
+            src={`${image}`}
+            alt={`${tittle}`}
+            width={150}
+            height={150}
+          />
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="text-center">
+        <p className="text-blue-600 text-[20px] font-black ">{`${tittle}`}</p>
+        <p className="text-slate-500 text-[14px] font-normal">{`${content}`}</p>
+      </CardContent>
+    </Card>
+  </a>
+);
+
+
 
 const Proyects = () => {
   return (
-    <div
-      id="proyectos"
-      className="h-screen w-full bg-gradient-radial  relative  min-h-[812px]"
-    >
-      <div className="h-full w-full flex flex-col  justify-center items-center">
-        <div className="w-3/4 flex flex-col gap-y-24 ">
+    <div id="proyectos" className="bg-gradient-radial  relative py-44 ">
+      <div className="h-full w-full flex flex-col justify-center items-center">
+        <div className="w-3/4 flex flex-col   ">
           <div className="text-center">
             <p className="text-[32px] font-black text-blue-600">
               Nuestros Proyectos
@@ -50,94 +84,34 @@ const Proyects = () => {
               clientes
             </p>
           </div>
-          <Carousel
-            swipeable={true}
-            draggable={true}
-            showDots={true}
-            responsive={responsive}
-            ssr={true} // means to render carousel on server-side.
+          <Slider
+            dots={true}
             infinite={true}
-            autoPlay={true}
-            autoPlaySpeed={5000}
-            keyBoardControl={true}
-            customTransition="transform 500ms ease-in-out"
-            transitionDuration={4000}
-            containerClass="carousel-container"
-            removeArrowOnDeviceType={["desktop", "mobile", "tablet"]}
-            dotListClass="custom-dot-list-style"
-            itemClass=" mx-1"
+            speed={500}
+            slidesToShow={1}
+            slidesToScroll={1}
+            arrows={true}
+            autoplay={true}
+            autoplaySpeed={3000}
           >
-            <a href="https://play.google.com/store/apps/details?id=com.centinel.ecar&hl=en&gl=US">
-              <Card className=" rounded-3xl    mb-5 h-600 hover:border-blue-600">
-                <CardHeader>
-                  <CardTitle className="flex justify-center">
-                    <img
-                      className=" border-blue-600 object-cover"
-                      src="/images/ecarlogo.png"
-                      alt="ecarLogo"
-                      width={150}
-                      height={150}
-                    />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-center ">
-                  <p className="text-blue-600 text-[20px] font-black "> Ecar</p>
-                  <p className="text-slate-500 text-[14px] font-normal">
-                    Sistema de consulta integrada para vehículos, SUNARP,
-                    Revisión Técnica, SOAT, Papeletas de Lima y Callao
-                  </p>
-                </CardContent>
-              </Card>
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.guardsoft.cloudhotel&hl=en&gl=US">
-              <Card className=" rounded-3xl  h-600  hover:border-blue-600 ">
-                <CardHeader>
-                  <CardTitle className="flex justify-center">
-                    <img
-                      className="object-cover"
-                      src="/images/cloudhotel.png"
-                      alt="CloudHotel"
-                      width={150}
-                      height={150}
-                    />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-blue-600 text-[20px] font-black ">
-                    Cloud Hotel
-                  </p>
-                  <p className="text-slate-500 text-[14px] font-normal">
-                    Nuestra aplicacion permite gestionar hoteles de manera facil
-                    y sencilla en cualquier momento.
-                  </p>
-                </CardContent>
-              </Card>
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=pe.guardsoft.mibulla&hl=en&gl=US">
-              <Card className=" rounded-3xl h-600   hover:border-blue-600">
-                <CardHeader>
-                  <CardTitle className="flex justify-center">
-                    <img
-                      className="object-cover"
-                      src="/images/mibulla.png"
-                      alt="mibullaLogo"
-                      width={150}
-                      height={150}
-                    />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="text-center">
-                  <p className="text-blue-600 text-[20px] font-black ">
-                    MiBulla
-                  </p>
-                  <p className="text-slate-500 text-[14px] font-normal">
-                    Mi Bulla, una forma fácil de buscar y escuchar tus emisoras
-                    favoritas. Todas las estaciones del Perú.
-                  </p>
-                </CardContent>
-              </Card>
-            </a>
-          </Carousel>
+            {slides.map((slide, index) => {
+              return (
+                <div
+                  key={index}
+                  className="max-w-[1400px]  w-full m-auto py-8 px-2 relative group "
+                >
+                  <div className="w-full h-full rounded-2xl bg-center bg-cover duration-500">
+                    {card({
+                      image: slide.url,
+                      tittle: slide.tittle,
+                      content: slide.content,
+                      link: slide.link,
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </Slider>
         </div>
       </div>
 

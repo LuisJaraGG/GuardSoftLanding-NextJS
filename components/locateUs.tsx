@@ -15,14 +15,11 @@ import { Link } from "lucide-react";
 
 const LocateUs = () => {
   return (
-    <div
-      id="ubicanos"
-      className="h-screen bg-gradient-radial relative  min-h-[812px]"
-    >
+    <div id="ubicanos" className="  bg-gradient-radial relative  py-16">
       <div className="h-full w-full flex flex-col justify-center items-center ">
-        <div className="w-3/4  flex flex-col gap-y-14">
+        <div className="w-3/4  flex flex-col gap-y-5">
           <div className="text-center ">
-            <p className="text-white font-black text-[32px] leading-tight">
+            <p className="text-white font-black text-[28px] leading-tight">
               ¿Preparado para un nuevo Proyecto?
             </p>
             <p className="text-white font-normal text-[15px] leading-tight">
@@ -32,11 +29,11 @@ const LocateUs = () => {
               className="py-1 px-6 rounded-3xl bg-transparent text-white font-bold mt-2 mb-2 hover:bg-white hover:text-black text-[12px]"
               variant="outline"
             >
-              <a href="#ubicanos">Contactanos</a>
+              <a href="#contactanos">Contactanos</a>
             </Button>
           </div>
-
-          <Card className=" rounded-3xl shadow-lg  hover:animate-bounce">
+          <div className="flex flex-col  gap-y-10 pb-24">
+          <Card className=" rounded-3xl shadow-lg  md:hover:animate-bounce">
             <CardHeader>
               <CardTitle className="text-center flex justify-center">
                 <FaMap size={32} className="text-blue-600  "></FaMap>
@@ -49,7 +46,7 @@ const LocateUs = () => {
               </p>
             </CardContent>
           </Card>
-          <Card className=" rounded-3xl shadow-lg hover:animate-bounce">
+          <Card className=" rounded-3xl shadow-lg md:hover:animate-bounce">
             <CardHeader>
               <CardTitle className="text-center flex justify-center">
                 <FaAddressCard
@@ -65,7 +62,7 @@ const LocateUs = () => {
               </p>
             </CardContent>
           </Card>
-          <Card className=" rounded-3xl shadow-lg hover:animate-bounce">
+          <Card className=" rounded-3xl shadow-lg md:hover:animate-bounce">
             <CardHeader>
               <CardTitle className="text-center flex justify-center">
                 <FaPhone size={32} className="text-blue-600  "></FaPhone>
@@ -78,6 +75,7 @@ const LocateUs = () => {
               </p>
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
       {/* fondo de lottie */}

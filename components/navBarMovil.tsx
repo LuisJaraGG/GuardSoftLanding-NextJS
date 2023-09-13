@@ -17,13 +17,13 @@ const NavBarMovil = () => {
 
   return (
     <div>
-      <nav className="flex justify-center shadow-sm md:hidden bg-white fixed top-0 left-0 right-0 z-10 min-w-[375px] ">
-        <div className=" w-3/4  flex justify-between items-center p-2">
+      <nav className="flex justify-center shadow-sm md:hidden bg-white fixed top-0 left-0 right-0 z-10  ">
+        <div className=" w-full mx-8  flex justify-between items-center p-2">
           <div>
             <a href="#inicio">
               <Logo />
             </a>
-          </div> 
+          </div>
           <div className="flex items-center">
             <button onClick={() => setclicked(!clicked)}>
               <Sheet>
