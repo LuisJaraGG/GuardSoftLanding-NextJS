@@ -7,13 +7,13 @@ const HeroPage = () => {
   return (
     <div
       id="inicio"
-      className="h-screen  bg-gradient-radial  flex flex-col justify-center items-center  relative"
+      className="h-screen  bg-gradient-radial  flex flex-col  justify-center items-center  relative"
     >
       <div className="absolute top-0 right-0 " style={{ zIndex: -1 }}>
         <LottieW path={"fondo1"} id={"fondo1"} styles={"w-full"}></LottieW>
       </div>
 
-      <div className="w-3/4  flex flex-col gap-y-3 ">
+      <div className="w-3/4 md:max-w-[900px]  flex flex-col md:flex-row gap-y-3 ">
         <div className="flex justify-center ">
           <LottieW
             path={"hero"}
@@ -21,7 +21,8 @@ const HeroPage = () => {
             styles={"max-w-[180px] md:max-w-[400px] "}
           ></LottieW>
         </div>
-        <div>
+
+        <div className="md:p-16">
           <p className="text-[14px] text-blue-600 font-normal">
             EMPIEZA TU NEGOCIO DIGITAL
           </p>
@@ -33,7 +34,7 @@ const HeroPage = () => {
             sus clientes al próximo nivel
           </p>
         </div>
-        <div className="w-full flex justify-center items-center ">
+        <div className="w-full flex justify-center items-center md:hidden ">
           <a href="#nosotros">
             <FaAngleDown
               size={32}
@@ -41,6 +42,14 @@ const HeroPage = () => {
             ></FaAngleDown>
           </a>
         </div>
+      </div>
+      <div className="hidden w-full md:flex justify-center items-center md:absolute md:bottom-7">
+        <a href="#nosotros">
+          <FaAngleDown
+            size={32}
+            className="text-blue-600 motion-reduce:animate-bounce duration-100 "
+          ></FaAngleDown>
+        </a>
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ const About = () => {
       <div className="h-full w-full  flex flex-col-reverse justify-center items-center relative">
         <div className="w-full h-[30%] relative">
           <Image
-            src="/images/about.jpg"
+            src="/images/about.webp"
             alt="about image"
             className="w-full h-full object-cover"
             width={100}

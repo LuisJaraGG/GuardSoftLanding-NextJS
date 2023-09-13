@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 import LottieW from "./lottieW";
 import "slick-carousel/slick/slick.css";
@@ -16,21 +17,21 @@ import {
 
 const slides = [
   {
-    url: "/images/ecarlogo.png",
+    url: "/images/ecarlogo.webp",
     tittle: "Ecar",
     content:
       "Sistema de consulta integrada para vehículos, SUNARP, Revisión Técnica, SOAT, Papeletas de Lima y Callao",
     link: "https://play.google.com/store/apps/details?id=com.centinel.ecar&hl=es&gl=US",
   },
   {
-    url: "/images/cloudhotel.png",
+    url: "/images/cloudhotel.webp",
     tittle: "CloudHotel",
     content:
       "Nuestra aplicacion permite gestionar hoteles de manera facil y sencilla.",
     link: "https://play.google.com/store/apps/details?id=com.guardsoft.cloudhotel&hl=es_CL&gl=US",
   },
   {
-    url: "/images/mibulla.png",
+    url: "/images/mibulla.webp",
     tittle: "MiBulla",
     content:
       "Mi Bulla, una manera fácil de buscar y escuchar tus emisoras favoritas. Todas las emisoras del Perú.",
@@ -50,13 +51,13 @@ const card = ({ image, tittle, content, link }: Props) => (
     <Card className=" rounded-2xl hover:border-blue-600 p-4 h-[300px] pb-0">
       <CardHeader>
         <CardTitle className="flex justify-center px-16">
-          <img
+          <Image
             className="object-cover"
             src={`${image}`}
             alt={`${tittle}`}
             width={150}
             height={150}
-          />
+          ></Image>
         </CardTitle>
       </CardHeader>
       <CardContent className="text-center">
@@ -66,7 +67,6 @@ const card = ({ image, tittle, content, link }: Props) => (
     </Card>
   </a>
 );
-
 
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
@@ -80,36 +80,39 @@ const applyFadeIn = (element: HTMLElement | null) => {
 };
 
 const Proyects = () => {
-      const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-      useEffect(() => {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const targetCard = entry.target as HTMLDivElement;
-                applyFadeIn(targetCard);
-              }
-            });
-          },
-          { threshold: 0.1 }
-        );
-
-        cardRefs.current.forEach((cardRef) => {
-          if (cardRef) {
-            observer.observe(cardRef);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const targetCard = entry.target as HTMLDivElement;
+            applyFadeIn(targetCard);
           }
         });
+      },
+      { threshold: 0.1 }
+    );
 
-        return () => {
-          observer.disconnect();
-        };
-      }, []);
+    cardRefs.current.forEach((cardRef) => {
+      if (cardRef) {
+        observer.observe(cardRef);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <div id="proyectos" className="bg-gradient-radial  relative py-44 ">
       <div className="h-full w-full flex flex-col justify-center items-center">
         <div className="w-3/4 flex flex-col   ">
-          <div ref={(el) => cardRefs.current.push(el)} className="text-center opacity-0">
+          <div
+            ref={(el) => cardRefs.current.push(el)}
+            className="text-center opacity-0"
+          >
             <p className="text-[32px] font-black text-blue-600">
               Nuestros Proyectos
             </p>

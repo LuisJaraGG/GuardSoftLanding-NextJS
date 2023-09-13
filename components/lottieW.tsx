@@ -14,12 +14,17 @@ const LottieW = ({
   styles = "min-w-[100px] min-h-[100px] max-w-[250px]",
 }: Props) => {
   useEffect(() => {
-    Lottie.loadAnimation({
+    const animate =Lottie.loadAnimation({
       container: document.getElementById(`lottie-${id}`)!,
       renderer: "svg",
       loop: true,
       autoplay: true,
       path: "/lottie/" + path + ".json",
+    });
+    
+    animate.addEventListener("complete", () => {
+      console.log("La animación ha completado.");
+      // Agrega aquí cualquier acción que desees realizar cuando la animación se completa
     });
   }, []);
   return (

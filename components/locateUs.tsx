@@ -53,10 +53,10 @@ const LocateUs = () => {
       <div className="h-full w-full flex flex-col justify-center items-center ">
         <div className="w-3/4  flex flex-col gap-y-5">
           <div ref={(el) => cardRefs.current.push(el)} className="text-center opacity-0 ">
-            <p className="text-white font-black text-[28px] leading-tight">
+            <p className="text-white font-black text-[20px] leading-tight">
               ¿Preparado para un nuevo Proyecto?
             </p>
-            <p className="text-white font-normal text-[15px] leading-tight">
+            <p className="text-white font-light text-[16px] leading-tight">
               Háblanos de tu proyecto
             </p>
             <Button
