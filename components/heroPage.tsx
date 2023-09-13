@@ -7,7 +7,7 @@ const HeroPage = () => {
   return (
     <div
       id="inicio"
-      className="h-screen bg-gradient-radial w-full flex flex-col justify-center items-center  relative min-w-[428px] min-h-[812px]"
+      className="h-screen bg-gradient-radial w-full flex flex-col justify-center items-center  relative  min-h-[812px]"
     >
       <div className="absolute top-0 right-0 " style={{ zIndex: -1 }}>
         <LottieW path={"fondo1"} id={"fondo1"} styles={"w-full"}></LottieW>
