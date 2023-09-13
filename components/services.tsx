@@ -21,35 +21,38 @@ const applyFadeIn = (element: HTMLElement | null) => {
 };
 
 const Services = () => {
-    const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-    useEffect(() => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const targetCard = entry.target as HTMLDivElement;
-              applyFadeIn(targetCard);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const targetCard = entry.target as HTMLDivElement;
+            applyFadeIn(targetCard);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-      cardRefs.current.forEach((cardRef) => {
-        if (cardRef) {
-          observer.observe(cardRef);
-        }
-      });
+    cardRefs.current.forEach((cardRef) => {
+      if (cardRef) {
+        observer.observe(cardRef);
+      }
+    });
 
-      return () => {
-        observer.disconnect();
-      };
-    }, []);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
     <div id="servicio" className=" bg-gradient-radial relative pt-16  ">
       <div className="h-full w-full flex flex-col justify-center items-center">
         <div className="w-3/4  flex flex-col gap-y-12">
-          <div className="text-center ">
+          <div
+            ref={(el) => cardRefs.current.push(el)}
+            className="text-center opacity-0 "
+          >
             <p className="text-blue-600 font-black text-[32px] leading-tight">
               Servicios
             </p>
