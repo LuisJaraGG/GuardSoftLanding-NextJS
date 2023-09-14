@@ -46,7 +46,10 @@ const Services = () => {
     };
   }, []);
   return (
-    <div id="servicio" className=" bg-gradient-radial relative pt-16  ">
+    <div
+      id="servicio"
+      className=" md:h-screen bg-gradient-radial relative pt-16  "
+    >
       <div className="h-full w-full flex flex-col justify-center items-center">
         <div className="w-3/4  flex flex-col gap-y-12">
           <div
@@ -61,42 +64,44 @@ const Services = () => {
             </p>
           </div>
 
-          <div className=" flex flex-col gap-y-5 pb-16">
+          <div className=" flex flex-col md:flex-row md:gap-x-5 md:items-center gap-y-5 pb-16">
             <Card
               ref={(el) => cardRefs.current.push(el)}
-              className=" rounded-3xl shadow-lg opacity-0 "
+              className=" rounded-3xl shadow-lg opacity-0  md:w-[400px]"
             >
               <CardHeader className="px-2 py-1">
                 <CardTitle className="text-center">
                   <LottieW
                     path={"servicio1"}
                     id={"servicio1"}
-                    styles={"w-full  h-20 "}
+                    styles={"w-full  h-20 md:h-60 "}
                   ></LottieW>
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-blue-600 text-[20px] font-black ">
-                  Consultoría DIgital
-                </p>
-                <p className="text-slate-500 text-[13px] font-normal">
-                  Realizamos una evaluación y replanteamos los procesos
-                  actuales, para crear nuevas oportunidades de crecimiento
-                  enfocados en transformación digital.
-                </p>
+              <CardContent className="text-center md:flex md:flex-col md:items-center">
+                <div className="md:w-[80%] ">
+                  <p className="text-blue-600 text-[20px] font-black ">
+                    Consultoría DIgital
+                  </p>
+                  <p className="text-slate-500 text-[13px] font-normal">
+                    Realizamos una evaluación y replanteamos los procesos
+                    actuales, para crear nuevas oportunidades de crecimiento
+                    enfocados en transformación digital.
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
             <Card
               ref={(el) => cardRefs.current.push(el)}
-              className=" rounded-3xl shadow-lg opacity-0 "
+              className=" rounded-3xl shadow-lg opacity-0 md:w-[400px]"
             >
               <CardHeader className="px-2 py-1">
                 <CardTitle className="text-center">
                   <LottieW
                     path={"servicio2"}
                     id={"servicio2"}
-                    styles={"w-full h-20  "}
+                    styles={"w-full h-20 md:h-60  "}
                   ></LottieW>
                 </CardTitle>
               </CardHeader>
@@ -111,14 +116,14 @@ const Services = () => {
             </Card>
             <Card
               ref={(el) => cardRefs.current.push(el)}
-              className=" rounded-3xl shadow-lg opacity-0 "
+              className=" rounded-3xl shadow-lg opacity-0 md:w-[400px] "
             >
               <CardHeader className="px-2 py-1">
                 <CardTitle className="text-center">
                   <LottieW
                     path={"servicio3"}
                     id={"servicio3"}
-                    styles={"w-full  h-20 "}
+                    styles={"w-full  h-20 md:h-60 "}
                   ></LottieW>
                 </CardTitle>
               </CardHeader>
@@ -146,7 +151,10 @@ const Services = () => {
         ></LottieW>
       </div>
 
-      <div className="absolute top-0  left-0 right-0" style={{ zIndex: -1 }}>
+      <div
+        className="absolute top-0  left-0 right-0 md:hidden"
+        style={{ zIndex: -1 }}
+      >
         <LottieW
           path={"fondo3"}
           id={"servicio-fondo2"}

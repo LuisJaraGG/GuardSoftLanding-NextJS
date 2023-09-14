@@ -13,23 +13,23 @@ const HeroPage = () => {
         <LottieW path={"fondo1"} id={"fondo1"} styles={"w-full"}></LottieW>
       </div>
 
-      <div className="w-3/4 md:max-w-[900px]  flex flex-col md:flex-row gap-y-3 ">
-        <div className="flex justify-center ">
+      <div className="w-3/4 md:w-full md:max-w-[900px]  flex flex-col md:flex-row gap-y-3 ">
+        <div className="flex justify-center md:w-1/2 ">
           <LottieW
             path={"hero"}
             id={"hero"}
-            styles={"max-w-[180px] md:max-w-[400px] "}
+            styles={"max-w-[180px] md:max-w-[300px] lg:max-w-[400px]  md:p-5"}
           ></LottieW>
         </div>
 
-        <div className="md:p-16">
-          <p className="text-[14px] text-blue-600 font-normal">
+        <div className="md:flex md:justify-center md:flex-col md:w-1/2 ">
+          <p className="md:text-left text-[14px] md:text-[16px] text-blue-600 font-light">
             EMPIEZA TU NEGOCIO DIGITAL
           </p>
-          <p className="text-[32px] text-blue-600 font-extrabold leading-tight ">
+          <p className="text-[32px] md:text-[32px]  lg:text-[48px] text-blue-600 font-extrabold leading-tight ">
             Estrategias digitales a medida orientadas a resultados
           </p>
-          <p className="text-[14px]  text-slate-500 font-normal">
+          <p className="text-[14px] md:text-[18px] text-slate-500 font-normal">
             Guardsoft es un partner digital listo para involucrarse y llevar a
             sus clientes al próximo nivel
           </p>
